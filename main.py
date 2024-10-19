@@ -19,8 +19,8 @@ class PDFDocument(Document):
 
 
 class WordDocument(Document):
-    def __init__(self, number_of_strings, which_words):
-        self.strings = number_of_strings
+    def __init__(self, number_of_sheets, which_words):
+        self.sheets = number_of_sheets
         self.words = which_words
 
     def save(self):
@@ -28,7 +28,7 @@ class WordDocument(Document):
             print('В вашем документе должен находиться хотя бы 1 символ. Файл не сохранён. Попробуйте ещё раз')
         else:
             try:
-                print(f'Файл формата "Word", состоящий из {int(self.strings)} строк и слов: {self.words}', end=' ')
+                print(f'Файл формата "Word", состоящий из {int(self.sheets)} листов и слов: {self.words}', end=' ')
                 print('успешно сохранён!')
             except ValueError:
                 print('В поле "Введите количество строк" нужно ввести ЧИСЛО. Файл не сохранён. Попробуйте ещё раз.')
@@ -55,9 +55,9 @@ class DocumentFactory:
         if self.type_of_document == 'PDF':
             return PDFDocument(input('Введите количество картинок: '))
         elif self.type_of_document == 'Word':
-            return WordDocument(input('Введите количество строк: '), input('Введите слова: '))
+            return WordDocument(input('Введите количество листов: '), input('Введите слова: '))
         elif self.type_of_document == 'Excel':
-            return ExcelDocument(input('Введите число колонок: '), input('Введите число строк: '))
+            return ExcelDocument(input('Введите число столбцов: '), input('Введите число строк: '))
         else:
             print('Такого типа документов не существует. Попробуйте ещё раз.')
 
